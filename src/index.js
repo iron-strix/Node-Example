@@ -1,10 +1,11 @@
-console.log('Hello World')
+import express from 'express'
 
-const x = 2
-const y = 3
+const app = express()
 
-console.log(x + y)
+const port = 3000
 
-const sum = (x, y) => x + y
+app.get('/', (req, res) => {
+  res.send({ msg: 'Hello World!' })
+})
 
-console.log(sum(x, y))
+app.listen(port)
