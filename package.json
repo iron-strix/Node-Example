@@ -28,6 +28,12 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0",
+    "morgan": "^1.10.0",
+    "pino": "^8.7.0",
+    "pino-pretty": "^9.1.1"
   }
 }
