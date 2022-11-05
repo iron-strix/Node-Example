@@ -4,6 +4,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
+import bodyParser from 'body-parser'
 import logger from './utils/logger'
 import router from './routes'
 import { notFound, errorHandler } from './utils/errors'
@@ -15,6 +16,7 @@ const app = express()
 app.use(morgan(process.env.MORGAN_LOG)) // logging
 app.use(cors({ origin: process.env.ORIGIN })) // cross origin
 app.use(helmet()) // secures headers
+app.use(bodyParser.json()) // allows parsing body request
 
 app.use(router)
 
