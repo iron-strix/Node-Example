@@ -7,7 +7,12 @@ const database = new PrismaClient()
 export const getCompanies = async () => database.Company.findMany()
 
 export const getCompany = async (id) =>
-  database.company.findUnique({ where: { companyId: id } })
+  database.company.findUnique({
+    where: { companyId: id },
+    include: {
+      Department: true,
+    },
+  })
 
 export const addCompany = async (name) =>
   database.company.create({ data: { name } })
