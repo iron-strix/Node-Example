@@ -46,3 +46,5 @@ router.delete('/:id', async (req, res) => {
     res.status(404).send({ msg: 'Employee not found' })
   }
 })
+
+export default router
