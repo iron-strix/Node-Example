@@ -7,7 +7,7 @@ const database = new PrismaClient()
 export const getDepartments = async () => database.Department.findMany()
 
 export const getDepartment = async (id) =>
-  database.Department.findUnique({ where: { DepartmentId: id } })
+  database.Department.findUnique({ where: { departmentId: id } })
 
 export const addDepartment = async (name, companyId) =>
   database.Department.create({ data: { name, companyId } })
