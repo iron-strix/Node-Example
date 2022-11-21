@@ -3,7 +3,7 @@ import { Router } from 'express'
 import {
   getEmployee,
   getEmployees,
-  createEmployee,
+  addEmployee,
   updateEmployee,
   deleteEmployee,
 } from '../../models/employees'
@@ -25,8 +25,12 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const employee = await createEmployee(req.body)
-  res.send(employee)
+  const employee = await addEmployee(req.body)
+  if (employee) res.send(employee)
+  else
+    res
+      .status(400)
+      .json({ error: 'Employee could not be added. (some error trace here)' })
 })
 
 router.put('/:id', async (req, res) => {

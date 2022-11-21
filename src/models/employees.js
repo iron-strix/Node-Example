@@ -4,23 +4,26 @@ import { PrismaClient } from '@prisma/client'
 const database = new PrismaClient()
 // use `database` in your application to read and write data in your DB
 
-export const getEmployees = async () => database.employee.findMany()
+export const getEmployees = async () => database.Employee.findMany()
 
 export const getEmployee = async (id) => {
-  database.employee.findUnique({ where: { employeeId: id } })
+  database.Employee.findUnique({ where: { employeeId: id } })
 }
 
-export const createEmployee = async (employeeData, departmentId) => {
-  database.employee.create({ data: { ...employeeData, departmentId } })
-}
+export const addEmployee = async (employeeData) =>
+  database.Employee.create({ data: { ...employeeData } })
 
-export const updateEmployee = async (id, employeeData, departmentId) => {
-  database.employee.update({
-    where: { employeeId: id },
-    data: { ...employeeData, departmentId },
-  })
+export const updateEmployee = async (id, employeeData) => {
+  const employee = await getEmployee(id)
+  if (employee) {
+    return database.Employee.update({
+      where: { employeeId: id },
+      data: { ...employee, ...employeeData, updatedAt: new Date() },
+    })
+  }
+  return null
 }
 
 export const deleteEmployee = async (id) => {
-  database.employee.delete({ where: { employeeId: id } })
+  database.Employee.delete({ where: { employeeId: id } })
 }
