@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import { getCompanies, getCompany, addCompany } from '../../models/companies'
-import { getDepartments, getDepartment, addDepartment } from '../../models/departments'
+import { addDepartment } from '../../models/departments'
 
 const router = Router()
 
