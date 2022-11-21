@@ -9,5 +9,5 @@ export const getDepartments = async () => database.Department.findMany()
 export const getDepartment = async (id) =>
   database.Department.findUnique({ where: { departmentId: id } })
 
-export const addDepartment = async (name, companyId) =>
-  database.Department.create({ data: { name, companyId } })
+export const addDepartment = async (companyData) =>
+  database.Department.create({ data: { ...companyData } })

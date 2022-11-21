@@ -1,6 +1,10 @@
 import { Router } from 'express'
 
-import { getDepartment, getDepartments } from '../../models/departments'
+import {
+  getDepartment,
+  getDepartments,
+  addDepartment,
+} from '../../models/departments'
 
 const router = Router()
 
@@ -16,6 +20,11 @@ router.get('/:id', async (req, res) => {
   } else {
     res.status(404).send({ msg: 'Department not found' })
   }
+})
+
+router.post('/', async (req, res) => {
+  const department = await addDepartment(req.body)
+  res.send(department)
 })
 
 export default router
