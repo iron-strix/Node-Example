@@ -6,9 +6,8 @@ const database = new PrismaClient()
 
 export const getEmployees = async () => database.Employee.findMany()
 
-export const getEmployee = async (id) => {
+export const getEmployee = async (id) =>
   database.Employee.findUnique({ where: { employeeId: id } })
-}
 
 export const addEmployee = async (employeeData) =>
   database.Employee.create({ data: { ...employeeData } })
@@ -24,6 +23,5 @@ export const updateEmployee = async (id, employeeData) => {
   return null
 }
 
-export const deleteEmployee = async (id) => {
+export const deleteEmployee = async (id) =>
   database.Employee.delete({ where: { employeeId: id } })
-}
