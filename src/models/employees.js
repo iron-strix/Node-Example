@@ -4,11 +4,15 @@ import { PrismaClient } from '@prisma/client'
 const database = new PrismaClient()
 // use `database` in your application to read and write data in your DB
 
-export const getEmployees = async (skip, take) =>
-  database.Employee.findMany({
+export const getEmployees = async (skip, take) => {
+  const count = await database.Employee.count()
+  const employees = await database.Employee.findMany({
     skip,
     take,
   })
+
+  return { count, employees }
+}
 
 export const getEmployee = async (id) =>
   database.Employee.findUnique({ where: { employeeId: id } })
